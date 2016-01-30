@@ -85,3 +85,21 @@ function fizzbuzz(int){
   if(int % 3 === 0) return "Buzz"
   return int
 }
+
+
+app.post("/prime", function(req, res){
+  var response = [];
+  req.body.forEach(function(int){
+    response.push(isPrime(int));
+  })
+  res.json(response);
+})
+function isPrime(int){
+  for(var i = 2; i < int; i++){
+    console.log(int, i)
+    if(int % i === 0){
+      return false 
+    }
+  } 
+  return true
+}
