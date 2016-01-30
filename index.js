@@ -1,7 +1,9 @@
 var app = require("express")();
 var bodyParser = require("body-parser");
+var wmata = require("./wmata");
 app.use(bodyParser.json())
 
+app.post("/wmata", wmata)
 app.listen(process.env.PORT || 3000)
 
 app.post("/hello", function(req, res){
