@@ -7,6 +7,7 @@ function getClosestStation(lat, lon, radius, callback){
   var url = "https://api.wmata.com/Rail.svc/json/jStationEntrances?api_key=" + env.primary + "&Lat="+lat+"&Lon="+lon+"&Radius=" + radius;
   console.log(url)
   request(url , function(err,res,body){
+    console.log("entrances:", body)
     var code = JSON.parse(body).Entrances[0].StationCode1;
     var url = "https://api.wmata.com/Rail.svc/json/jStationInfo?api_key="+env.primary+"&StationCode=" + code;
     request(url, function(err, res, body){
