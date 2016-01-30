@@ -123,6 +123,7 @@ function sumOfSquares(int){
 }
 
 
+
 function sexyPrimes(limit){
   var primes = [];
   for(var i = 2; i < limit; i++){
@@ -133,8 +134,20 @@ function sexyPrimes(limit){
   var sexyPrimes = [];
   primes.forEach(function(p1){
     primes.forEach(function(p2){
-      if(Math.abs(p1 - p2) === 6 ){
-        sexyPrimes.push([p1,p2])
+      if(Math.abs(p1 - p2) === 6 ){ 
+        var push = false;
+        sexyPrimes.forEach(function(sx){
+          if(sx){
+          if(sx.contains(p1) || sx.contains(p2)){
+            push = true;
+          } else {
+            push = false;
+          }
+}
+        })
+        if(push || sexyPrimes.length === 0){
+          sexyPrimes.push([p1,p2])
+        }
       }
     })
   })
@@ -143,4 +156,31 @@ function sexyPrimes(limit){
 
 app.post("/sexy", function(req, res){
   res.json(sexyPrimes(req.body[0]))
+})
+
+
+function factors(int){
+  var fx = []
+  if(isPrime(int)) return [int]
+  for(var i = 2; i < int; i++){
+    console.log(i, int)
+    if(int % i === 0) {
+      fx.push(i)
+    }
+  }
+  var primeFactors = [];
+  fx.forEach(function(f){
+    if(isPrime(f)){
+      primeFactors.push(f)
+    }
+  })
+  return primeFactors
+}
+
+app.post("/factors", function(req, res){
+  var response = [];
+  req.body.forEach(function(int){
+    response.push(factors(int))
+  })
+  res.json(response);
 })
