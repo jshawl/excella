@@ -46,7 +46,7 @@ module.exports = function(req, res){
   getClosestStation(req.body.latitude, req.body.longitude, req.body.radius, function(station){
      if(station){
         res.json({
-          name: station.Name,
+          station: station.Name,
           stationLat: station.Lat,
           stationLon: station.Lon
         })
