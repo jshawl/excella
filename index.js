@@ -205,3 +205,30 @@ function triple(int){
 app.post("/triples", function(req, res){
   res.json(triple(req.body[0]))
 })
+
+
+function fromRoman(roman){
+  var vals = {
+    "I":1,
+    "V":5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+  }
+  var sum = 0;
+  
+  roman.split("").forEach(function(r){
+    sum += vals[r]
+  })
+  return sum
+}
+
+app.post("/roman", function(req, res){
+  var response = [];
+  req.body.forEach(function(d){
+    response.push(fromRoman(d))
+  })
+  res.json(response);
+})
