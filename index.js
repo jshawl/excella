@@ -186,3 +186,26 @@ app.post("/factors", function(req, res){
   })
   res.json(response);
 })
+
+
+function triple(int){
+  var triples = [];
+  for(var i = 1; i <= int; i++){
+    for( var j = 1; j <= int; j++){
+      for(var k = 1; k <= int; k++){
+        if((i * i)+(j*j) == (k*k) && i < j){
+          triples.push([i,j,k])
+        }
+      }
+    }
+  }
+  return triples;
+}
+
+app.post("/triples", function(req, res){
+  var response = [];
+  req.body.forEach(function(int){
+    response.push(triple(int))
+  })
+  res.json(response);
+})
