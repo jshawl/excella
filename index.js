@@ -141,7 +141,7 @@ function sexyPrimes(limit){
           return;
         }
         sexyPrimes.forEach(function(px){
-          if(px.includes(p1) || px.includes(p2)){
+          if(px.indexOf(p1) != -1 || px.indexOf(p2) != -1){
             push = false;
           }
           
