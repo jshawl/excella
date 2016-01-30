@@ -1,0 +1,22 @@
+{
+  "name": "excella",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jshawl/excella.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jshawl/excella/issues"
+  },
+  "homepage": "https://github.com/jshawl/excella#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
