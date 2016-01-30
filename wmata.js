@@ -43,6 +43,7 @@ function deg2rad(deg) {
 
 
 module.exports = function(req, res, next){
+  console.log("GOT", req.body)
   getClosestStation(req.body.latitude, req.body.longitude, req.body.radius, function(station){
      if(station){
         res.json({
