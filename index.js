@@ -161,6 +161,7 @@ app.post("/sexy", function(req, res){
 
 function factors(int){
   var fx = []
+  if(int > 50000) return []
   if(isPrime(int)) return [int]
   for(var i = 2; i < int; i++){
     console.log(i, int)
