@@ -15,6 +15,12 @@ function getClosestStation(lat, lon, radius, callback){
   })
 }
 
+function getDepartures( code, callback ){
+  request("https://excellathon.herokuapp.com/wmata/StationPrediction.svc/json/GetPrediction/" + code, function(err, res, body){
+    callback(JSON.parse(body).Trains)
+  })
+}
+
 // http://stackoverflow.com/a/27943/850825
 function getDistanceFromLatLonInM(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
@@ -36,11 +42,15 @@ function deg2rad(deg) {
 
 
 module.exports = function(req, res){
+  console.log("GOT:", req.body)
   getClosestStation(req.body.latitude, req.body.longitude, req.body.radius, function(station){
-    res.json({
-      name: station.Name,
-      stationLat: station.Lat,
-      stationLon: station.Lon
+    getDepartures(station.Code, function(departures){
+      res.json({
+        name: station.Name,
+        stationLat: station.Lat,
+        stationLon: station.Lon,
+        departures: departures
+      })
     })
   })
 }
