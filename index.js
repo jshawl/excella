@@ -134,26 +134,27 @@ function sexyPrimes(limit){
   var sexyPrimes = [];
   primes.forEach(function(p1){
     primes.forEach(function(p2){
-      if(Math.abs(p1 - p2) === 6 ){ 
-        var push = false;
-        sexyPrimes.forEach(function(sx){
-          if(sx){
-          if(sx.contains(p1) || sx.contains(p2)){
-            push = true;
-          } else {
+      if(Math.abs(p1 - p2) === 6){
+        var push = true;
+        if(sexyPrimes.length === 0){
+          sexyPrimes.push([p1,p2])
+          return;
+        }
+        sexyPrimes.forEach(function(px){
+          if(px.includes(p1) || px.includes(p2)){
             push = false;
           }
-}
+          
         })
-        if(push || sexyPrimes.length === 0){
-          sexyPrimes.push([p1,p2])
+        if(push){
+            sexyPrimes.push([p1,p2])
         }
       }
     })
   })
+
   return sexyPrimes
 }
-
 app.post("/sexy", function(req, res){
   res.json(sexyPrimes(req.body[0]))
 })
