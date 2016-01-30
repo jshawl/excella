@@ -35,3 +35,13 @@ function isAnagram(one, two){
   })
   return bool;
 }
+
+app.post("/palindrome", function(req, res){
+  var words = req.body;
+  var response = [];
+  console.log(words)
+  words.forEach(function(word){
+    response.push(word.split("").reverse().join("") == word)
+  })
+  res.json(response);
+})
