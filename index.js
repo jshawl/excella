@@ -103,3 +103,21 @@ function isPrime(int){
   } 
   return true
 }
+
+app.post("/sumsquares", function(req,res){
+  var response = [];
+  req.body.forEach(function(int){
+    response.push(sumOfSquares(int))
+  })
+  res.json(response);
+})
+
+function sumOfSquares(int){
+  var int = JSON.stringify(int)
+  ints = int.split("")
+  var sum = 0;
+  ints.forEach(function(int){
+    sum += (int * int)
+  })
+  return sum
+}
