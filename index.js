@@ -121,3 +121,26 @@ function sumOfSquares(int){
   })
   return sum
 }
+
+
+function sexyPrimes(limit){
+  var primes = [];
+  for(var i = 2; i < limit; i++){
+    if(isPrime(i)){
+      primes.push(i)
+    }
+  }
+  var sexyPrimes = [];
+  primes.forEach(function(p1){
+    primes.forEach(function(p2){
+      if(Math.abs(p1 - p2) === 6 ){
+        sexyPrimes.push([p1,p2])
+      }
+    })
+  })
+  return sexyPrimes
+}
+
+app.post("/sexy", function(req, res){
+  res.json(sexyPrimes(req.body[0]))
+})
