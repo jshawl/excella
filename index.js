@@ -45,3 +45,27 @@ app.post("/palindrome", function(req, res){
   })
   res.json(response);
 })
+
+app.post("/fibonacci", function(req, res){
+  var fibs = req.body;
+  var response = [];
+  fibs.forEach(function(fb){
+    console.log("fb is", fb)
+    var fibo = fib(fb + 1)
+    response.push(fibo[fb])
+  })
+  res.json(response)
+})
+
+
+
+function fib(limit, o){
+  var o = o || [0, 1]
+  if(o.length >= 2){
+    o.push(o[o.length - 2] + o[o.length - 1])
+    if(o.length < limit){
+      fib(limit, o)
+    }
+  }
+  return o
+}
