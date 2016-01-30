@@ -36,7 +36,7 @@ function deg2rad(deg) {
 
 
 module.exports = function(req, res){
-  getClosestStation(38.900468, -77.038539, 150, function(station){
+  getClosestStation(req.body.latitude, req.body.longitude, req.body.radius, function(station){
     res.json({
       name: station.Name,
       stationLat: station.Lat,
