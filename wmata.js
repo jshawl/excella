@@ -1,4 +1,6 @@
-var env = require("./env.js");
+var fs = require("fs");
+
+var env = fs.existsSync("./env.js") ? require("./env.js") : process.env;
 var request = require("request");
 
 function getClosestStation(lat, lon, radius, callback){
