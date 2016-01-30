@@ -69,3 +69,19 @@ function fib(limit, o){
   }
   return o
 }
+
+app.post("/fizzbuzz", function(req, res){
+  var fbs = req.body;
+  var response = [];
+  fbs.forEach(function(fb){
+    response.push(fizzbuzz(fb))
+  })
+  res.json(response)
+})
+
+function fizzbuzz(int){
+  if(int % 6 === 0) return "FizzBuzz"
+  if(int % 2 === 0) return "Fizz"
+  if(int % 3 === 0) return "Buzz"
+  return int
+}
