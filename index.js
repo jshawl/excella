@@ -203,9 +203,5 @@ function triple(int){
 }
 
 app.post("/triples", function(req, res){
-  var response = [];
-  req.body.forEach(function(int){
-    response.push(triple(int))
-  })
-  res.json(response);
+  res.json(triple(req.body[0]))
 })
