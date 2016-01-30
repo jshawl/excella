@@ -12,6 +12,7 @@ function getClosestStation(lat, lon, radius, callback){
         callback(station)
       }
     })
+   callback()
   })
 }
 
@@ -42,15 +43,16 @@ function deg2rad(deg) {
 
 
 module.exports = function(req, res){
-  console.log("GOT:", req.body)
   getClosestStation(req.body.latitude, req.body.longitude, req.body.radius, function(station){
-    getDepartures(station.Code, function(departures){
-      res.json({
-        name: station.Name,
-        stationLat: station.Lat,
-        stationLon: station.Lon,
-        departures: departures
-      })
-    })
+     if(station){
+        res.json({
+          name: station.Name,
+          stationLat: station.Lat,
+          stationLon: station.Lon
+        })
+      } else {
+        res.json("fuck")
+      }
   })
+
 }
